@@ -1,6 +1,7 @@
-#include<stdio.h>
-#include<stdlib.h>
-#include<stdbool.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+#include <iostream>
 
 
 
@@ -8,7 +9,7 @@
 #define numOfResources 3
 
 // Index 0 is resource A, 1 is B, and 2 is C
-int resources[3] = {10, 5, 6};
+int resources[3] = {10, 5, 7};
 // Stores what is already allocated. Rows are the processes, columns are the resources
 int allocationMatrix[numOfProcesses][numOfResources] = {{0, 1, 0},
                                                         {2, 0, 0},
@@ -26,6 +27,24 @@ int need[numOfProcesses][numOfResources];
 int available[3] = {3, 3, 2};
 bool finished[numOfProcesses];
 int sequence[numOfProcesses];
+
+
+
+// Reads input file
+void readFile() {
+    ifstream file("system.txt");
+
+  if (myfile.is_open())
+  {
+    while ( getline (myfile,line) )
+    {
+      cout << line << '\n';
+    }
+    myfile.close();
+  }
+
+  else cout << "Unable to open file"; 
+}
 
 
 
@@ -84,7 +103,7 @@ void isSafe() {
 
 
 int main() {
-    
+
     // Calculate the number of needed instances
     for(int i = 0; i < numOfProcesses; i++) {
         for(int j = 0; j < numOfResources; j++) {
